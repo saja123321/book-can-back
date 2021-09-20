@@ -36,7 +36,7 @@ Estimate of time needed to complete: 2 hours
 Start time: **3:00**
 Finish time: **5:00**
 
-## Actual time needed to complete: **\_**
+## Actual time needed to complete: **2**
 
 ## Credit and Collaborations
 
@@ -44,5 +44,16 @@ Finish time: **5:00**
 c/)
 
 ---
+# secound day
 
+Name of feature: **Create , Delete**
+Estimate of time needed to complete: 1 hours
+Start time: **6:00**
+Finish time: **7:00**
+
+## Actual time needed to complete: **1**
+
+## Credit and Collaborations
+
+[use atlas](https://www.section.io/engineering-education/nodejs-mongoosejs-mongodb/)
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->

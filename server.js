@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 require('dotenv').config();
 const homeCont = require('./Controller/home-controller')
-const bookCont = require('./Controller/book-controler')
+const { getBook } = require('./Controller/book-controler')
 const { bookCreat, bookDel } = require('./Models/book.model')
 const PORT = process.env.PORT;
 mongoose.connect(
@@ -24,7 +24,7 @@ db.once("open", function () {
     console.log("Connected successfully");
 });
 app.get("/", homeCont);
-app.get("/books", bookCont);
+app.get("/books", getBook);
 app.post("/add-book", bookCreat);
 app.delete("/del-book/:id", bookDel);
 //seedBookData;
