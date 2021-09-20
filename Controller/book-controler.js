@@ -5,4 +5,4 @@ const getBook = (req, res) => {
         res.json(data);
     })
 };
-module.exports = getBook;
+module.exports = { getBook }
