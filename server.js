@@ -8,7 +8,7 @@ app.use(express.json());
 require('dotenv').config();
 const homeCont = require('./Controller/home-controller')
 const { getBook } = require('./Controller/book-controler')
-const { bookCreat, bookDel } = require('./Models/book.model')
+const { bookUpdate, bookCreat, bookDel } = require('./Models/book.model')
 const PORT = process.env.PORT;
 mongoose.connect(
     `mongodb+srv://saja1234:saja1234@db.zb2er.mongodb.net/LTUC?retryWrites=true&w=majority`,
@@ -27,5 +27,7 @@ app.get("/", homeCont);
 app.get("/books", getBook);
 app.post("/add-book", bookCreat);
 app.delete("/del-book/:id", bookDel);
+app.put("/update-book/:id", bookUpdate);
+
 //seedBookData;
 app.listen(PORT, () => { console.log(`listen to the port ${PORT} 🖥️ `) })
