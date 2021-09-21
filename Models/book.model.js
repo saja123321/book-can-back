@@ -1,5 +1,6 @@
 "use strict";
 const mongoose = require("mongoose");
+
 const bookschem = new mongoose.Schema({
     title: { type: String, unique: true },
     description: { type: String },
@@ -11,8 +12,12 @@ const bookCreat = async (request, response) => {
     const book = new bookModel(request.body);
     try {
         await book.save();
-        console.log('book created')
-        response.send(book);
+        (req, res) => {
+            bookModel.find().then(data => {
+                res.json(data);
+            })
+        };
+        response.json('book created');
     } catch (error) {
         console.log(error)
         response.status(500).send(error);
@@ -22,17 +27,23 @@ const bookUpdate = async (request, response) => {
 
     const { title, description, email, status } = request.body;
     const Id = request.params.id;
-    // response.send(Id)
-    bookModel.findByIdAndUpdate({ _id: Id }, { title, description, email, status }, { new: true },
-        (error, updatedCatData) => {
-            response.json(updatedCatData);
-        }).catch(response.send("error"));
+    await bookModel.findByIdAndUpdate(Id,
+        { title, description, email, status },
+        { new: true }, () => {
+            (req, res) => {
+                bookModel.find().then(data => {
+                    res.json(data);
+                })
+            };
+
+            response.json('updated')
+        });
+
 }
 const bookDel = async (request, response) => {
     const book = request.params.id
     try {
         bookModel.deleteOne({ _id: book }, (error, deleted) => {
-            console.log(deleted)
             response.send('book deleted');
         });
     } catch (error) {

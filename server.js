@@ -30,4 +30,4 @@ app.delete("/del-book/:id", bookDel);
 app.put("/update-book/:id", bookUpdate);
 
 //seedBookData;
-app.listen(PORT, () => { console.log(`listen to the port ${PORT} 🖥️ `) })
+app.listen(8001, () => { console.log(`listen to the port ${8001} 🖥️ `) })
