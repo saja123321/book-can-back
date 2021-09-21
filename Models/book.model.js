@@ -18,6 +18,16 @@ const bookCreat = async (request, response) => {
         response.status(500).send(error);
     }
 }
+const bookUpdate = async (request, response) => {
+
+    const { title, description, email, status } = request.body;
+    const Id = request.params.id;
+    // response.send(Id)
+    bookModel.findByIdAndUpdate({ _id: Id }, { title, description, email, status }, { new: true },
+        (error, updatedCatData) => {
+            response.json(updatedCatData);
+        }).catch(response.send("error"));
+}
 const bookDel = async (request, response) => {
     const book = request.params.id
     try {
@@ -30,7 +40,7 @@ const bookDel = async (request, response) => {
         response.status(500).send(error);
     }
 }
-module.exports = { bookModel, bookCreat, bookDel }
+module.exports = { bookModel, bookCreat, bookDel, bookUpdate }
 // let new_book = new bookModel({
     //     title: 'The Forty Rules of Love',
     //     description: 'How can love be worthy of its name if one selects solely the pretty things and leaves out the hardships? It is easy to enjoy the good and dislike the bad. Anybody can do that. The real challenge is to love the good and the bad together, not because you need to take the rough with the smooth but because you need to go beyond such descriptions and accept love in its entirety ― Elif Shafak, The Forty Rules of Love',
